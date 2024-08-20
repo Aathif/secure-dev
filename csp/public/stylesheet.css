@@ -1,0 +1,29 @@
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: medium;
+    /* font-weight: 300; */
+    width: 1000px;
+    margin: 5px;
+}
+.border {
+    border: 2px solid burlywood;
+    width: max-content;
+    padding-right: 5px;
+}
+
+.margin-5px {
+    margin: 5px;
+}
+
+.mt-5 {
+    margin-top: 5px;
+}
+
+.padding-5px {
+    padding: 5px;
+}
+
+.padding-left-5px {
+    padding-left: 5px;
+}
+

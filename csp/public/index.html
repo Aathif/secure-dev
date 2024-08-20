@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script
+        language="javascript" 
+        type="text/javascript" 
+        src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.12/p5.js">
+    </script>
+</head>
+<body>
+    <h1>CSP and Why its important</h1>
+    <h3>1. Restricting external sources and allowing only known sources</h3>
+    <p style="padding-left: 5px;">
+        If our application allows script tags to execute and load libraries from unknown sites then this can posses a greater risk to our application security.
+        For example the cdn source can be "http://hacked.com/rce.js" which contains mallicious js code and once executed on our server it will lead to compromise of our systems.
+    </p>
+    <h4 style="padding-left: 5px;">Solution:</h4>
+    <div class="padding-left-5px border">
+        <p>The solution for adding the capability to determine wheter the source is trusted or not is to use CSP related headers.
+            <div style="padding-left: 5px;">
+                Here is the code snippet:
+               <div class="border padding-left-5px">
+                <br>
+                app.use((req, res, next) => {
+                    <br>
+                    res.setHeader(
+                    <br>
+                        'Content-Security-Policy',
+                        <br>
+                        "default-src 'self';",
+                        <br>
+                        "script-src 'self';"
+                        <br>
+                    );
+                    <br>
+                });
+               </div>
+
+                <br>
+                After adding the above code if you try to load script from untrusted site you will recieve error which will resemble to image displayed below.
+                <div class="mt-5">
+                    <img src="./script-load-failed.png">
+                </div>
+
+                To trust any other site/ 3rd party you need to add the site url in script-src
+                <br>
+                For example if you want to trust libraries from google.com you will write it as:
+                <br>
+                <blockquote><mark>"script-src 'self' https://www.google.com;"</mark></blockquote>
+            </div>
+        </p>
+    </div>
+    <h3>2. Restricting image sources</h3>
+    <p class="padding-left-5px">
+        If there is no restriction images can be loaded from any unkonwn/ untrusted site.
+    </p>
+    <div class="padding-left-5px border">
+        To trust any other site/ 3rd party you need to add the site url in <marK>img-src</marK>
+        <br>
+        For example if you want to trust libraries from linkedin.com you will write it as:
+        <br>
+        <blockquote><mark>"img-src 'self' https://www.linkedin.com;"</mark></blockquote>
+    </div>
+</body>
+</html>
